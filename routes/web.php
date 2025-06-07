@@ -7,9 +7,21 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
+Route::view('dashboard', 'dashboard/dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+Route::view('/dashboard/groups', 'dashboard/dashboardGroups')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard.groups');
+
+Route::view('/dashboard/venues', 'dashboard/dashboardVenues')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard.venues');
+
+Route::view('/dashboard/events', 'dashboard/dashboardEvents')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard.events');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
